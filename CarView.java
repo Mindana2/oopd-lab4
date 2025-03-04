@@ -45,8 +45,8 @@ public class CarView extends JFrame implements Observer{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarModel model){
-        model.observers.add(this);
+    public CarView(String framename){
+
         initComponents(framename);
     }
 

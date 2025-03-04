@@ -20,18 +20,22 @@ public class Main {
         // Instance of this class
         timer = new Timer(delay, new TimerListener());
         // A list of cars, modify if needed
-        model = new CarModel();
-        frame = new CarView("CarSim 1.0", model);
-        cc = new CarController();
+
+        frame = new CarView("CarSim 1.0");
+        model = new CarModel(frame);
+        cc = new CarController(frame, model);
+
+        Image volvo = new Image(0, 0, true, "pics/Volvo240.jpg");
+        Image scania = new Image(0, 100, true, "pics/Scania.jpg");
+        Image saab = new Image(0, 200, true, "pics/Saab95.jpg");
+        Image volvoworkshop = new Image(300, 300 ,true, "pics/VolvoBrand.jpg");
 
 
-
-
-        model.cars.add(new Volvo240());
-        model.cars.add(new Saab95(false));
-        model.cars.add(new Scania(0));
-
-
+        model.addObserver(frame);
+        frame.drawPanel.ImageList.add(volvo);
+        frame.drawPanel.ImageList.add(scania);
+        frame.drawPanel.ImageList.add(volvoworkshop);
+        frame.drawPanel.ImageList.add(saab);
         model.workshops.add(new Workshop<Volvo240>(5, 300, 300, Volvo240.class));
 
         // Start a new view and send a reference of self

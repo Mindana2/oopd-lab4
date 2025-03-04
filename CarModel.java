@@ -3,11 +3,25 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class CarModel {
-    ArrayList<Workshop> workshops = new ArrayList<>();
-    ArrayList<Vehicle> cars = new ArrayList<>();
-    ArrayList<Observer> observers = new ArrayList<>();
-    ArrayList<Image> ImageList = new ArrayList<>();
+   ArrayList<Workshop> workshops = new ArrayList<>();
+   ArrayList<Vehicle> cars = new ArrayList<>();
+   ArrayList<Observer> observers = new ArrayList<>();
 
+
+
+
+
+    public CarModel(CarView frame){
+
+        cars.add(new Volvo240());
+        cars.add(new Saab95(false));
+        cars.add(new Scania(0));
+        observers.add(frame);
+    }
+    public void addObserver(Observer observer) {observers.add(observer);}
+    public ArrayList<Observer> getObservers(){
+        return observers;
+    }
 
     void gas(int amount) {
         double gas = ((double) amount) / 100;

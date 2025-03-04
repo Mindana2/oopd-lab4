@@ -28,11 +28,12 @@ class VehicleTest {
 
     @Test
     void move() {
+        double y = carTest.getyPos();
         carTest.move();
-        assertEquals(0.0d, carTest.getyPos());
+        assertEquals(y, carTest.getyPos());
         carTest.startEngine();
         carTest.move();
-        assertEquals(0.1d, carTest.getyPos());
+        assertEquals(y + 0.1, carTest.getyPos());
     }
 
     @Test
@@ -85,7 +86,8 @@ class VehicleTest {
 
     @Test
     void unloadCarTransportDifferentPos(){
-
+        saab95.setxPos(carTransport.getxPos());
+        saab95.setyPos(carTransport.getyPos());
         carTransport.adjustTipper(70);
         carTransport.loadCar(saab95);
         carTransport.adjustTipper(0);
@@ -95,7 +97,7 @@ class VehicleTest {
         carTransport.stopEngine();
         carTransport.adjustTipper(70);
         carTransport.unloadCar();
-        assertEquals(saab95.getyPos(), carTransport.getyPos()-1);
+        assertEquals(carTransport.getyPos()-1, saab95.getyPos());
     }
 
     @Test

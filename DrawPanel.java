@@ -14,20 +14,10 @@ public class DrawPanel extends JPanel {
 
     // Just a single image, TODO: Generalize
     CarModel model;
-    
+    ArrayList<Image> ImageList = new ArrayList<>();
 
     public DrawPanel(int x, int y) {
 
-
-        Image volvo = new Image(0, 0, true, "pics/Volvo240.jpg");
-        Image scania = new Image(0, 100, true, "pics/Scania.jpg");
-        Image saab = new Image(0, 200, true, "pics/Saab95.jpg");
-        Image volvoworkshop = new Image(300, 300 ,true, "pics/VolvoBrand.jpg");
-
-        model.ImageList.add(volvo);
-        model.ImageList.add(saab);
-        model.ImageList.add(scania);
-        model.ImageList.add(volvoworkshop);
 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
@@ -57,7 +47,7 @@ public class DrawPanel extends JPanel {
     // TODO: Make this general for all cars
     void moveit(String path, int x, int y) {
 
-        for (Image image : model.ImageList){
+        for (Image image : ImageList){
             if (Objects.equals(path, image.getPath())){
                 image.setxPos(x);
                 image.setyPos(y);
@@ -66,7 +56,7 @@ public class DrawPanel extends JPanel {
     }
     void loadWorkshop(Vehicle car){
 
-        for (Image image : model.ImageList){
+        for (Image image : ImageList){
             if (Objects.equals(car.getPath(), image.getPath())) {
                 image.setVisibility(false);
             }
@@ -85,7 +75,7 @@ public class DrawPanel extends JPanel {
         super.paintComponent(g);
 
 
-        for (Image image : model.ImageList) {
+        for (Image image : ImageList) {
             if (image.getVisibility()) {
                 g.drawImage(loadImage(image.getPath()), image.getxPos(), image.getyPos(), null);
             }
