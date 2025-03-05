@@ -29,15 +29,19 @@ public class CarModel {
         return workshops;
     }
 
-    public void addCar(Vehicle car) {
-        cars.add(car);
+    public void addCar() {
+
+
+        //cars.add();
     }
+
     public void addWorkshop(Workshop workshop) {
         workshops.add(workshop);
     }
-    public void removeCar(Vehicle car) {
+
+    public void removeCar() {
         if (!cars.isEmpty()) {
-            this.getCars().remove(car);
+            this.getCars().remove(this.getCars().size() - 1);
         }
     }
 
