@@ -13,11 +13,18 @@ import javax.swing.*;
 public class DrawPanel extends JPanel {
 
     // Just a single image, TODO: Generalize
-    CarModel model;
+
     ArrayList<Image> ImageList = new ArrayList<>();
+    Image volvo = new Image(0, 0, true, "pics/Volvo240.jpg");
+    Image scania = new Image(0, 100, true, "pics/Scania.jpg");
+    Image saab = new Image(0, 200, true, "pics/Saab95.jpg");
+    Image volvoworkshop = new Image(300, 300 ,true, "pics/VolvoBrand.jpg");
 
     public DrawPanel(int x, int y) {
-
+        ImageList.add(volvo);
+        ImageList.add(scania);
+        ImageList.add(volvoworkshop);
+        ImageList.add(saab);
 
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));

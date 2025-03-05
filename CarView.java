@@ -27,8 +27,7 @@ public class CarView extends JFrame implements Observer{
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     JSpinner tipperSpinner = new JSpinner();
-    int gasAmount = 0;
-    int tipperAmount = 0;
+
     JLabel gasLabel = new JLabel("Amount of gas");
     JLabel tipperLabel = new JLabel("Tipper angle");
 
@@ -45,8 +44,8 @@ public class CarView extends JFrame implements Observer{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename){
-
+    public CarView(String framename, CarModel model){
+        model.addObserver(this);
         initComponents(framename);
     }
 
@@ -75,16 +74,6 @@ public class CarView extends JFrame implements Observer{
                         1);//step
         gasSpinner = new JSpinner(gasspinnerModel);
         tipperSpinner = new JSpinner(tipspinnerModel);
-        gasSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
-        tipperSpinner.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                tipperAmount = (int) ((JSpinner)e.getSource()).getValue();
-            }
-        });
 
         gasPanel.setLayout(new FlowLayout());
         gasPanel.setPreferredSize(new Dimension(100, 100));

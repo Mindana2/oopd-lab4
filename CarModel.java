@@ -1,26 +1,46 @@
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ArrayList;
 
 public class CarModel {
-   ArrayList<Workshop> workshops = new ArrayList<>();
-   ArrayList<Vehicle> cars = new ArrayList<>();
-   ArrayList<Observer> observers = new ArrayList<>();
+   private ArrayList<Workshop> workshops = new ArrayList<>();
+   private ArrayList<Vehicle> cars = new ArrayList<>();
+   private static ArrayList<Observer> observers = new ArrayList<>();
 
 
 
 
 
-    public CarModel(CarView frame){
+    public CarModel(){
 
         cars.add(new Volvo240());
         cars.add(new Saab95(false));
         cars.add(new Scania(0));
-        observers.add(frame);
+        workshops.add(new Workshop<Volvo240>(5, 300, 300, Volvo240.class));
     }
     public void addObserver(Observer observer) {observers.add(observer);}
+
     public ArrayList<Observer> getObservers(){
         return observers;
+    }
+
+    public ArrayList<Vehicle> getCars() {
+        return cars;
+    }
+    public ArrayList<Workshop> getWorkshops() {
+        return workshops;
+    }
+
+    public void addCar(Vehicle car) {
+        if (cars.size() < 10){
+            cars.add(car);
+        }
+    }
+    public void removeCar(Vehicle car){
+        if (cars.isEmpty()){
+            this.getCars().remove(car);
+        }
     }
 
     void gas(int amount) {
@@ -98,6 +118,12 @@ public class CarModel {
 
         return false;
     }
+    void notifyObservers(JButton button){
+        for (Observer observer : observers) {
+            observer.buttonPressed(button);
+        }
+    }
+
 
 }
 
