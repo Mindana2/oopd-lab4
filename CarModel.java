@@ -4,16 +4,13 @@ import java.util.ArrayList;
 
 public class CarModel {
     private ArrayList<Workshop> workshops = new ArrayList<>();
-    private ArrayList<Vehicle> cars = new ArrayList<>();
+    private ArrayList<Vehicle> cars = new ArrayList<>(10);
     private ArrayList<Observer> observers = new ArrayList<>();
 
 
     public CarModel() {
 
-        cars.add(new Volvo240());
-        cars.add(new Saab95(false));
-        cars.add(new Scania(0));
-        workshops.add(new Workshop<Volvo240>(5, 300, 300, Volvo240.class));
+
     }
 
     public void addObserver(Observer observer) {
@@ -33,13 +30,13 @@ public class CarModel {
     }
 
     public void addCar(Vehicle car) {
-        if (cars.size() < 10) {
-            cars.add(car);
-        }
+        cars.add(car);
     }
-
+    public void addWorkshop(Workshop workshop) {
+        workshops.add(workshop);
+    }
     public void removeCar(Vehicle car) {
-        if (cars.isEmpty()) {
+        if (!cars.isEmpty()) {
             this.getCars().remove(car);
         }
     }
