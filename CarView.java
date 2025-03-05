@@ -131,7 +131,13 @@ public class CarView extends JFrame implements Observer{
     }
 
     @Override
-    public void buttonPressed(JButton button) {
-
+    public void buttonPressed(Vehicle car, Boolean collision) {
+        if (collision) {
+            drawPanel.loadWorkshop(car);
+        }
+        int x = (int) Math.round(car.getxPos());
+        int y = (int) Math.round(car.getyPos());
+        drawPanel.moveit(car.getPath(), x, y);
+        drawPanel.repaint();
     }
 }
